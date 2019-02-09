@@ -7,16 +7,16 @@ module.exports = {
   copyright: "...",
   disqusShortname: "larrycustodio",
   postsPerPage: 4,
-  googleAnalyticsId: "xxx",
   menu: [
     {
       label: "Articles",
       path: "/"
     },
-    {
-      label: "About me",
-      path: "/pages/about"
-    },
+    // TODO: modify about me page
+    // {
+    //   label: "About me",
+    //   path: "/pages/about"
+    // },
     {
       label: "Work",
       path: "/pages/work"
