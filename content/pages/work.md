@@ -3,10 +3,10 @@ title: "Work"
 template: "page"
 ---
 
-Starting as a freelance developer, I've worked with multiple awesome companies, and taken on several contracts allowing me to get my feet wet and hone my know-how with various web tools and technologies.
+Starting as a freelance developer, I've contracted with multiple awesome companies and taken on some cool projects to hone my know-how with various web tools and technologies.
 
 As of current, I am _happily_ employed as a Front End Engineer at [Blurb](https://blurb.com), where I
-get to work on migrating the company web pages and applications to SPAs.
+get to work on using React to perform frontend SPA migrations.
 
 ## Work History
 
