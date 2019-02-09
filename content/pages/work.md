@@ -12,7 +12,7 @@ get to work on migrating the company web pages and applications to SPAs.
 
 - Fullstack Developer @ **Freelance** (_2016 - Present_)
 - Frontend Engineer @ **Blurb** (_11/2018 - Present_)
-- Software Engineer, Enterprise @ **Facebook** (_05/2018 - 11/2018_)
+- Software Engineer @ **Facebook** (_05/2018 - 11/2018_)
 
 ## Featured Work
 
