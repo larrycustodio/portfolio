@@ -1,6 +1,6 @@
 ---
 title: JavaScript Animations & the rAF API
-date: "2018-01-09T08:48:15.169Z"
+date: "2019-01-09T08:48:15.169Z"
 template: "post"
 draft: false
 slug: "/posts/animations-in-javascript/"

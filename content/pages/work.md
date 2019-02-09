@@ -8,7 +8,7 @@ Starting as a freelance developer, I've contracted with multiple awesome compani
 As of current, I am _happily_ employed as a Front End Engineer at [Blurb](https://blurb.com), where I
 get to work on using React to perform frontend SPA migrations.
 
-## Work History
+### Work History
 
 - Fullstack Developer @ **Freelance** (_2016 - Present_)
 - Frontend Engineer @ **Blurb** (_11/2018 - Present_)
