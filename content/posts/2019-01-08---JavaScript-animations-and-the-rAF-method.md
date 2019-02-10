@@ -42,9 +42,11 @@ I've determined the following:
 - an interval callback is invoked to transform the target element's state in discretised/
   step-wise methods:
 
-  A) Said steps are determined by the displacement between the start and end state, the rate of change (easing function), and the total duration defined. For our example, the container _starts_ from some horizontal scroll position, will _end_ up at another horizontal scroll position, and will "ease" from start to end within a defined period of time (by default, the JQuery describes the easing curve as a "swing", to 400ms).
+  A) Said steps are determined by the displacement between the start and end state, the rate of change (easing function), and the total duration defined.
 
-  B) Each instance of the interval represents a chunk of the duration, being invoked via a setInterval method called every 13ms (so about 60fps/~16ms). Back to our example, the 750ms duration this then be divided into 45 segments ( 750 / 1000 sec \* 60 segments/sec )
+  For our example, the container _starts_ from some horizontal scroll position, will _end_ up at another scroll position to center the selected element, and will "ease" from start to end within a defined period of time. By default, the JQuery describes the "ease" as a "swing", within a period of 400ms.
+
+  B) The setInterval method is called every 13ms to achieve the refresh rate of approximately 60fps. Back to our example, the 750ms duration means that our animation frames will be divided into into 45 segments ( 750 / 1000 sec \* 60 segments/sec ).
 
 Following this approach, I decided to divide up the calculations and to three separate methods:
 
@@ -73,8 +75,8 @@ const getTargetDelta = (container, targetElement) => {
 
 #### Finding an Easing function
 
-Since I wished to come close to JQuery's "swing" easing function, I decided to use
-easeInOutCubic method:
+Since I wished to come close to JQuery's "swing" easing function,
+I decided to use the easeInOutCubic method:
 
 ```text
 const easeInOutCubic = delta => {
@@ -94,13 +96,35 @@ Per MDN [link](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAn
 The `window.requestAnimationFrame()` method tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint. The method takes a callback as an argument to be invoked before the repaint.
 </blockquote>
 
-`requestAnimationFrame` basically provides a more versatile version of the setInterval approach.
+`requestAnimationFrame` basically provides a more versatile version of the setInterval approach:
 
-So rather than wrapping calling our animation calls in a `setInterval()` callback _AND_ making an assumption that our animation method will be invoked to meet the refresh rate of 60fps, rAF lets me to tell my browser that I wish to re-render my view from its current state to another for the next frame ("the repaint").
+So rather than wrapping calling our animation calls in a `setInterval()` callback & using
+the magical number of 13-16ms to represent a callback rate of 60fps, rAF allows me to
+abstract this context of how often to refresh the callback over to the browser.
+
+```text
+// Assign values to represent the state of the animation frames
+let currentFrame = 0;
+const totalFrames = durationInMs / 1000;
+
+const animate = () => {
+  const progress = currentFrame / totalFrames;
+
+  // Add the DOM manipulation methods here
+  // This is where the calculations + step-wise function will go
+  manipulateTheDOM();
+  currentFrame += 1;
+
+  // conditionally call for recursion depending on the progress
+  if(progress < 1) window.requestAnimationFrame(animate);
+};
+
+window.requestAnimationFrame(animate);
+```
 
 ## Final product & Other thoughts
 
-Assembling putting everything together, I've come up with the following:
+Assembling putting everything together, I've ended up with the following:
 
 ```
 const scrollToLeft = (container, target, duration = 750) => {
@@ -114,13 +138,12 @@ const scrollToLeft = (container, target, duration = 750) => {
   const animate = () => {
     currFrame += 1;
 
-    //
-    const scrollStep =
+    const step =
       getTargetDelta(container, target) * easeInOutCubic(currFrame / endFrame)
       + offsetLeftInitial;
 
     // update the scroll position of the container
-    container.scrollLeft = scrollStep;
+    container.scrollLeft = step;
 
     if(currFrame < endFrame) window.requestAnimationFrame(animate);
   };
