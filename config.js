@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
 module.exports = {
-  url: "https://lumen.netlify.com",
-  title: "Larry Custodio",
-  subtitle: "Frontend developer",
-  copyright: "...",
-  disqusShortname: "larrycustodio",
+  url: 'https://lumen.netlify.com',
+  title: 'Larry Custodio',
+  subtitle: 'Frontend developer',
+  copyright: '...',
+  disqusShortname: 'larrycustodio',
   postsPerPage: 4,
   menu: [
     {
-      label: "Articles",
-      path: "/"
+      label: 'Articles',
+      path: '/'
     },
     // TODO: modify about me page
     // {
@@ -18,17 +18,17 @@ module.exports = {
     //   path: "/pages/about"
     // },
     {
-      label: "Work",
-      path: "/pages/work"
+      label: 'Work',
+      path: '/pages/work'
     }
   ],
   author: {
-    name: "Larry Custodio",
-    photo: "/profile-pic.png",
+    name: 'Larry Custodio',
+    photo: '/profile-pic.png',
     bio:
-      "Frontend developer from Oakland, CA. I do all sorts of web-related stuff, and currently dabbling with React.",
+      'Frontend developer from Oakland, CA. I do all sorts of web-related stuff, and currently dabbling with React.',
     contacts: {
-      github: "larrycustodio"
+      github: 'larrycustodio'
     }
   }
 };

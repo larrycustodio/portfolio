@@ -1,7 +1,7 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Layout from "../components/Layout";
-import Post from "../components/Post";
+import React from 'react';
+import { graphql } from 'gatsby';
+import Layout from '../components/Layout';
+import Post from '../components/Post';
 
 const PostTemplate = ({ data }) => {
   const { title: siteTitle, subtitle: siteSubtitle } = data.site.siteMetadata;
@@ -11,8 +11,7 @@ const PostTemplate = ({ data }) => {
     description: postDescription
   } = data.markdownRemark.frontmatter;
 
-  const metaDescription =
-    postDescription !== null ? postDescription : siteSubtitle;
+  const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
 
   return (
     <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
