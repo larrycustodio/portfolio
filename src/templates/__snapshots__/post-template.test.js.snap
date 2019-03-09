@@ -79,13 +79,6 @@ exports[`PostTemplate renders correctly 1`] = `
         render={[Function]}
       />
     </div>
-    <div
-      className="post__comments"
-    >
-      <StaticQuery
-        render={[Function]}
-      />
-    </div>
   </div>
 </div>
 `;
