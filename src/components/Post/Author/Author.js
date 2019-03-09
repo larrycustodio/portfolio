@@ -1,19 +1,19 @@
-import React from "react";
-import { graphql, StaticQuery } from "gatsby";
-import { getContactHref } from "../../../utils";
-import styles from "./Author.module.scss";
+import React from 'react';
+import { graphql, StaticQuery } from 'gatsby';
+import { getContactHref } from '../../../utils';
+import styles from './Author.module.scss';
 
 export const PureAuthor = ({ data }) => {
   const { author } = data.site.siteMetadata;
 
   return (
-    <div className={styles["author"]}>
-      <p className={styles["author__bio"]}>{author.bio}</p>
+    <div className={styles['author']}>
+      <p className={styles['author__bio']}>{author.bio}</p>
     </div>
   );
 };
 
-export const Author = props => (
+export const Author = (props) => (
   <StaticQuery
     query={graphql`
       query AuthorQuery {
@@ -27,7 +27,7 @@ export const Author = props => (
         }
       }
     `}
-    render={data => <PureAuthor {...props} data={data} />}
+    render={(data) => <PureAuthor {...props} data={data} />}
   />
 );
 

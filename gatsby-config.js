@@ -57,6 +57,7 @@ module.exports = {
             }
           }
         `,
+        // eslint-disable max-len
         feeds: [
           {
             serialize: ({ query: { site, allMarkdownRemark } }) =>
@@ -96,7 +97,7 @@ module.exports = {
             `,
             output: "/rss.xml"
           }
-        ]
+        ] // eslint-enable max-len
       }
     },
     {
