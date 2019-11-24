@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 const {
   author,
@@ -7,9 +7,9 @@ const {
   menu,
   subtitle,
   title,
-  url
-} = require("./config.js");
-const postCssPlugins = require("./postcss-config.js");
+  url,
+} = require('./config.js')
+const postCssPlugins = require('./postcss-config.js')
 
 module.exports = {
   siteMetadata: {
@@ -19,25 +19,25 @@ module.exports = {
     copyright,
     disqusShortname,
     menu,
-    author
+    author,
   },
   plugins: [
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content`,
-        name: "pages"
-      }
+        name: 'pages',
+      },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "assets",
-        path: `${__dirname}/static`
-      }
+        name: 'assets',
+        path: `${__dirname}/static`,
+      },
     },
     {
-      resolve: "gatsby-plugin-feed",
+      resolve: 'gatsby-plugin-feed',
       options: {
         query: `
           {
@@ -60,8 +60,8 @@ module.exports = {
                   date: edge.node.frontmatter.date,
                   url: site.siteMetadata.site_url + edge.node.fields.slug,
                   guid: site.siteMetadata.site_url + edge.node.fields.slug,
-                  custom_elements: [{ "content:encoded": edge.node.html }]
-                })
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                }),
               ),
             query: `
               {
@@ -88,40 +88,40 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml"
-          }
-        ] // eslint-enable max-len
-      }
+            output: '/rss.xml',
+          },
+        ], // eslint-enable max-len
+      },
     },
     {
-      resolve: "gatsby-transformer-remark",
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           {
-            resolve: "gatsby-remark-images",
-            options: { maxWidth: 960 }
+            resolve: 'gatsby-remark-images',
+            options: { maxWidth: 960 },
           },
           {
-            resolve: "gatsby-remark-responsive-iframe",
-            options: { wrapperStyle: "margin-bottom: 1.0725rem" }
+            resolve: 'gatsby-remark-responsive-iframe',
+            options: { wrapperStyle: 'margin-bottom: 1.0725rem' },
           },
-          "gatsby-remark-prismjs",
-          "gatsby-remark-copy-linked-files",
-          "gatsby-remark-smartypants"
-        ]
-      }
+          'gatsby-remark-prismjs',
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-smartypants',
+        ],
+      },
     },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-netlify",
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-netlify',
     {
-      resolve: "gatsby-plugin-netlify-cms",
+      resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        modulePath: `${__dirname}/src/cms/cms.js`
-      }
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
     },
     {
-      resolve: "gatsby-plugin-sitemap",
+      resolve: 'gatsby-plugin-sitemap',
       options: {
         query: `
           {
@@ -143,39 +143,39 @@ module.exports = {
             }
           }
         `,
-        output: "/sitemap.xml",
+        output: '/sitemap.xml',
         serialize: ({ site, allSitePage }) =>
           allSitePage.edges.map(edge => ({
             url: site.siteMetadata.url + edge.node.path,
-            changefreq: "daily",
-            priority: 0.7
-          }))
-      }
+            changefreq: 'daily',
+            priority: 0.7,
+          })),
+      },
     },
     // web manifest config
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: title,
         short_name: title,
-        start_url: "/",
-        background_color: "#FFF",
-        theme_color: "#468df7",
-        display: "standalone",
-        icon: "static/profile-pic.png"
-      }
+        start_url: '/',
+        background_color: '#FFF',
+        theme_color: '#468df7',
+        display: 'standalone',
+        icon: 'static/profile-pic.png',
+      },
     },
-    "gatsby-plugin-offline",
-    "gatsby-plugin-catch-links",
-    "gatsby-plugin-react-helmet",
+    'gatsby-plugin-offline',
+    'gatsby-plugin-catch-links',
+    'gatsby-plugin-react-helmet',
     {
-      resolve: "gatsby-plugin-sass",
+      resolve: 'gatsby-plugin-sass',
       options: {
         postCssPlugins: [...postCssPlugins],
         cssLoaderOptions: {
-          camelCase: false
-        }
-      }
-    }
-  ]
-};
+          camelCase: false,
+        },
+      },
+    },
+  ],
+}
