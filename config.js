@@ -3,20 +3,11 @@
 module.exports = {
   url: 'https://lumen.netlify.com',
   title: 'Larry Custodio',
-  subtitle: 'Frontend developer',
+  subtitle: 'Frontend Engineer',
   copyright: '...',
   disqusShortname: 'larrycustodio',
   postsPerPage: 4,
   menu: [
-    {
-      label: 'Articles',
-      path: '/'
-    },
-    // TODO: modify about me page
-    // {
-    //   label: "About me",
-    //   path: "/pages/about"
-    // },
     {
       label: 'Work',
       path: '/pages/work'
@@ -26,9 +17,10 @@ module.exports = {
     name: 'Larry Custodio',
     photo: '/profile-pic.png',
     bio:
-      'Frontend developer from Oakland, CA. I do all sorts of web-related stuff, and currently dabbling with React.',
+      'Frontend Engineer based in Oakland, CA.',
     contacts: {
-      github: 'larrycustodio'
+      github: 'larrycustodio',
+      linkedin: 'larry-custodio',
     }
   }
 };

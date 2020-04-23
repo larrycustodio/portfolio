@@ -1,46 +1,38 @@
 ---
-title: JavaScript Animations & the rAF API
+title: Exploring ways to replace JQuery's animate API
 date: '2019-01-09T08:48:15.169Z'
 template: 'post'
 draft: false
 slug: '/posts/animations-in-javascript/'
 category: 'JavaScript'
 tags:
-  - 'Web Development'
-description: 'Exploring the requestAnimationFrame method to achieve smooth animations.'
+  - 'requestAnimationFrame'
+  - 'frontend'
+description: 'Using the requestAnimationFrame method to achieve smooth animations.'
 ---
 
-Recently, I've taken a ticket at work to declutter the frontend update
-any unnecessary third party dependencies. _One_ particular API that caught my eye was
-this `click` handler that consumed this particular JQuery API:
+So I've been tasked to deprecate JQuery (amongst many other dependencies) on the company's frontend. 
+_One_ particular API that stood out was this `click` handler that consumed a JQuery API:
 
 ```text
-function scrollToLeft(container, targetEl, duration = 750){
+function scrollToX(container, targetEl, duration = 750){
   /* omitted some logic for brevity */
+
   $(container).animate({ scrollLeft: targetElCenter }, duration);
 }
 ```
 
 #### So what exactly did this achieve?
 
-The idea behind this method was to horizontally scroll the `container` DOM to center
-the focused target `targetEl` element (the calculated `targetElCenter`).
+The goal was to horizontally scroll the `container` object to center to
+the focused target element, `targetEl` (the calculated `targetElCenter`).
 
-Visually, think of something along these lines:
-![JQuery Demo](/media/gif-scroll_left-jquery.gif)
+So after inspecting JQuery's source code to figure out how `.animate()` does its magic,
+`.animate()` calculates the displacement between the start and end state, the rate of change (easing function), and the total 
+duration in which this sequence gets executed.
 
-## Defining the acceptance criteria
-
-The main goal of this exercise is to remove unnecessary dependencies. So no additional packages here.
-
-After inspecting the JQuery source code to figure out how `.animate()` does its magic,
-I've determined the following:
-
-**The method assigns a set of key values: the start position/state, end, and unit values.**
-
-Each step is determined by the following factors: displacement between the start and end state, the rate of change (easing function), and the total duration defined.
-
-In the case of our example, the container _starts_ from some horizontal scroll position, will _end_ up at another scroll position to center the selected element. The rate in which the container moves from start to finish is described with an easing function. A single iteration of this animation can last up to 400ms.
+Back to the example earlier, the container _starts_ from some horizontal (X) scroll position, and _ends_ up in another (X) position 
+to make it appear as if the container centers the focused element. The rate in which the container moves its X-position from start to finish is described with an easing function. A single iteration of this animation can last up to 400ms.
 
 **A callback interval is invoked to transform the target element's state in step-wise methods:**
 
@@ -123,7 +115,7 @@ window.requestAnimationFrame(animate);
 Assembling putting everything together, I've ended up with the following:
 
 ```
-const scrollToLeft = (container, target, duration = 750) => {
+const scrollToX = (container, target, duration = 750) => {
   // assign values for the state of the animation frames
   let currFrame = 0;
   const endFrame = duration / 1000 * 60;
@@ -144,15 +136,14 @@ const scrollToLeft = (container, target, duration = 750) => {
     if(currFrame < endFrame) window.requestAnimationFrame(animate);
   };
   window.requestAnimationFrame(animate);
-
 };
 ```
 
 ## Codepen Demo [[LINK]](https://codepen.io/larrycustodio-the-flexboxer/pen/JxKgab/)
 
-Enjoy!
+Cheers!
 
-...
 
-**TL;DR** - I wrote a bunch of a modularized methods to replace JQuery's
-animate() method. Check out the CodePen for a snippet of the solution.
+
+**TL;DR** - I translated down JQuery's `.animate()` API into easing functions. 
+Check out the CodePen for a snippet of the solution.
