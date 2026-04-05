@@ -1111,7 +1111,7 @@
     <div class="footer-links">
       <a href="https://github.com/larrycustodio" target="_blank">github</a>
       <a href="https://linkedin.com/in/l-custodio" target="_blank">linkedin</a>
-      <a href="#">work</a>
+      <div id="holiday-emoji"></div>
     </div>
   </footer>
 
@@ -1417,8 +1417,28 @@
       }, 220);
     }
 
-    /* ── FOOTER YEAR ── */
+    /* ── FOOTER ── */
     document.getElementById('footer-copy-year').textContent = new Date().getFullYear();
+
+    function addHolidayEmoji() {
+      const holidays = {
+        '1-1': '🎉', // New Year's Day
+        '1-19': '✊🏿', // Martin Luther King Jr. Day
+        '2-16': '🏛️', // Presidents' Day
+        '5-26': '🇺🇸🫡', // Memorial Day
+        '6-19': '✊🏿', // Juneteenth
+        '7-4': '🇺🇸', // Independence Day
+        '9-1': '🏝️', // Labor Day
+        '10-31': '🎃', // Halloween
+        '11-11': '🎖️', // Veterans Day
+        '11-27': '🦃', // Thanksgiving
+        '12-25': '🎄', // Christmas
+      };
+      const now = new Date();
+      const key = `${now.getMonth() + 1}-${now.getDate()}`;
+      return holidays[key] || '';
+    }
+    document.getElementById('holiday-emoji').textContent = addHolidayEmoji();
 
     /* ── DARK MODE ── */
     let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
