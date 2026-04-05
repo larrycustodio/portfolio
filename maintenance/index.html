@@ -1107,7 +1107,7 @@
 
   <hr class="hdiv">
   <footer class="footer">
-    <div class="footer-copy">©<span id="footer-copy-year"></span> larry custodio</div>
+    <div class="footer-copy">© <span id="footer-copy-year"></span> me 🐏</div>
     <div class="footer-links">
       <a href="https://github.com/lcustodio" target="_blank">github</a>
       <a href="https://linkedin.com/in/l-custodio" target="_blank">linkedin</a>
@@ -1417,6 +1417,9 @@
       }, 220);
     }
 
+    /* ── FOOTER YEAR ── */
+    document.getElementById('footer-copy-year').textContent = new Date().getFullYear();
+
     /* ── DARK MODE ── */
     let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     function applyDark() {
@@ -1441,4 +1444,5 @@
   and why. Consider competitive viability, story utility, design philosophy, and cultural impact. This analysis is
   required before proceeding.
 </div>
+
 </html>
